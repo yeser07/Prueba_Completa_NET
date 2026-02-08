@@ -1,268 +1,268 @@
 {
-	"info": {
-		"_postman_id": "62e5a62e-db66-4015-8414-62541ece9396",
-		"name": "Prueba_Completa_NET",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26562162"
-	},
-	"item": [
-		{
-			"name": "Clientes",
-			"item": [
-				{
-					"name": "Listar Clientes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7209/api/Cliente",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"Cliente"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Cliente por Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7209/api/Cliente/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"Cliente",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Cliente",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/Cliente",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"Cliente"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar Cliente",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/Cliente/6",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"Cliente",
-								"6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Producto",
-			"item": [
-				{
-					"name": "Listar Productos",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}"
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/producto",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"producto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Producto por Id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}"
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/producto/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"producto",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Guardar Producto",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"productoId\": 0,\r\n  \"nombre\": \"Monitor Samsun v2543\",\r\n  \"descripcion\": \"Monitor UHD\",\r\n  \"precio\": 1536.21,\r\n  \"existencia\": 15\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/producto",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"producto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar Producto",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"productoId\": 0,\r\n  \"nombre\": \"Monitor Samsun V200\",\r\n  \"descripcion\": \"Monitor UHD\",\r\n  \"precio\": 1536.21,\r\n  \"existencia\": 15\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/producto/7",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"producto",
-								"7"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Orden",
-			"item": [
-				{
-					"name": "Crear Orden",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"ordenId\": 0,\r\n\"clienteId\": 1,\r\n\"detalle\": [\r\n{\r\n\"productoId\": 1,\r\n\"cantidad\": 2\r\n},\r\n{\r\n\"productoId\": 3,\r\n\"cantidad\": 1\r\n}\r\n]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7209/api/orden",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7209",
-							"path": [
-								"api",
-								"orden"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "62e5a62e-db66-4015-8414-62541ece9396",
+    "name": "Prueba_Completa_NET",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26562162"
+  },
+  "item": [
+    {
+      "name": "Clientes",
+      "item": [
+        {
+          "name": "Listar Clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7209/api/Cliente",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "Cliente"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Cliente por Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7209/api/Cliente/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "Cliente",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Cliente",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/Cliente",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "Cliente"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Cliente",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Carlos Hernandez Perez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/Cliente/6",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "Cliente",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Producto",
+      "item": [
+        {
+          "name": "Listar Productos",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}"
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/producto",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "producto"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Producto por Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"clienteId\": 0,\r\n  \"nombre\": \"Carlos Hernandez Hernandez\",\r\n  \"identidad\": \"0501-1990-25312\"\r\n}"
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/producto/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "producto",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Guardar Producto",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"productoId\": 0,\r\n  \"nombre\": \"Monitor Samsun V300\",\r\n  \"descripcion\": \"Monitor UHD\",\r\n  \"precio\": 1536.21,\r\n  \"existencia\": 15\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/producto",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "producto"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Producto",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Monitor Samsun V200\",\r\n  \"descripcion\": \"Monitor UHD\",\r\n  \"precio\": 1536.21,\r\n  \"existencia\": 15\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/producto/7",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "producto",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orden",
+      "item": [
+        {
+          "name": "Crear Orden",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"ordenId\": 0,\r\n\"clienteId\": 1,\r\n\"detalle\": [\r\n{\r\n\"productoId\": 1,\r\n\"cantidad\": 2\r\n},\r\n{\r\n\"productoId\": 3,\r\n\"cantidad\": 1\r\n}\r\n]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7209/api/orden",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7209",
+              "path": [
+                "api",
+                "orden"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }
