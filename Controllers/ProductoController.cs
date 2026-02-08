@@ -1,0 +1,133 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Prueba_Completa_NET.Validators;
+using Prueba_Completa_NET.Repositories;
+using Prueba_Completa_NET.DTOs;
+
+namespace Prueba_Completa_NET.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ProductoController : ControllerBase
+    {
+        private readonly ProductoRepository _productoRespository;
+        private readonly ProductoCreateValidator _productoCreateValidator;
+
+        public ProductoController(ProductoRepository productoRespository, ProductoCreateValidator productoCreateValidator)
+        {
+            _productoRespository = productoRespository;
+            _productoCreateValidator = productoCreateValidator;
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> GetProductos()
+        {
+            var productos = await _productoRespository.ListarProductos();
+            var response = new DTOs.ApiResponse<List<DTOs.ProductoDTO>>
+            {
+                Success = true,
+                Message = "",
+                Errors = new List<string>(),
+                Data = productos
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetProductoPorId(int id)
+        {
+            long idProducto = id;
+            var producto = await _productoRespository.ObtenerProductoPorId(idProducto);
+            if (producto == null)
+            {
+                var notFoundResponse = new ApiResponse<ProductoDTO>
+                {
+                    Success = false,
+                    Message = "Producto no encontrado",
+                    Errors = new List<string> { "No existe un producto con el ID especificado" },
+                    Data = null
+                };
+                return NotFound(notFoundResponse);
+            }
+            var response = new ApiResponse<DTOs.ProductoDTO>
+            {
+                Success = true,
+                Message = "",
+                Errors = new List<string>(),
+                Data = producto
+            };
+            return Ok(response);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> CrearProducto([FromBody] ProductoCreateDTO productoCreateDTO)
+        {
+            var validationResult = _productoCreateValidator.Validate(productoCreateDTO);
+            if (!validationResult.IsValid)
+            {
+                var errorResponse = new ApiResponse<ProductoDTO>
+                {
+                    Success = false,
+                    Message = "Error de validación",
+                    Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+                    Data = null
+                };
+                return BadRequest(errorResponse);
+            }
+            var nuevoProducto = await _productoRespository.CrearProducto(productoCreateDTO);
+            var response = new ApiResponse<ProductoDTO>
+            {
+                Success = true,
+                Message = "Producto creado exitosamente",
+                Errors = new List<string>(),
+                Data = nuevoProducto
+            };
+            return Ok(response);
+        }
+
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> ActualizarProducto(int id, [FromBody] ProductoCreateDTO productoUpdateDTO)
+        {
+            long idProducto = id;
+            var validationResult = _productoCreateValidator.Validate(productoUpdateDTO);
+            if (!validationResult.IsValid)
+            {
+                var errorResponse = new ApiResponse<ProductoDTO>
+                {
+                    Success = false,
+                    Message = "Error de validación",
+                    Errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList(),
+                    Data = null
+                };
+                return BadRequest(errorResponse);
+            }
+
+            var productoActualizado = await _productoRespository.ActualizarProducto(idProducto, productoUpdateDTO);
+            if (productoActualizado == null)
+            {
+                var notFoundResponse = new ApiResponse<ProductoDTO>
+                {
+                    Success = false,
+                    Message = "Producto no encontrado",
+                    Errors = new List<string> { "No existe un producto con el ID especificado" },
+                    Data = null
+                };
+                return NotFound(notFoundResponse);
+            }
+
+
+            var response = new ApiResponse<ProductoDTO>
+            {
+                Success = true,
+                Message = "Producto actualizado exitosamente",
+                Errors = new List<string>(),
+                Data = productoActualizado
+            };
+            return Ok(response);
+        }
+    }
+}

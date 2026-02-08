@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen();
 //Registro de servicios para validadores
 builder.Services.AddScoped<ClienteCreateValidator>();
 builder.Services.AddScoped<ClienteUpdateValidator>();
+builder.Services.AddScoped<ProductoCreateValidator>();
 
 //EF Core configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -26,6 +27,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 //Registro de repositorios
 builder.Services.AddScoped<ClienteRepository>();
+builder.Services.AddScoped<ProductoRepository>();
 
 var app = builder.Build();
 
