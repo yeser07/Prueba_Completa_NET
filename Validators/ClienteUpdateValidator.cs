@@ -6,7 +6,7 @@ using Prueba_Completa_NET.DTOs;
 namespace Prueba_Completa_NET.Validators
 {
     
-        public class ClienteUpdateValidator : AbstractValidator<ClienteCreateDTO> 
+        public class ClienteUpdateValidator : AbstractValidator<ClienteDTO> 
         {
             private readonly AppDbContext _context;
 

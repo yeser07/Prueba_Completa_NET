@@ -68,7 +68,7 @@
             };
         }
 
-        public async Task<ClienteDTO> ActualizarCliente(long clienteId, ClienteCreateDTO clienteUpdateDTO)
+        public async Task<ClienteDTO> ActualizarCliente(long clienteId, ClienteUpdateDTO clienteUpdateDTO)
         {
             var clienteExistente = await _context.Clientes.FindAsync(clienteId);
 

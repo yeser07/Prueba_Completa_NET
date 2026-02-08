@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Prueba_Completa_NET.DTOs;
 using Prueba_Completa_NET.Repositories;
@@ -97,11 +98,16 @@ namespace Prueba_Completa_NET.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> ActualizarCliente(long id, [FromBody] ClienteCreateDTO clienteUpdateDTO)
+        public async Task<IActionResult> ActualizarCliente(long id, [FromBody] ClienteUpdateDTO clienteUpdateDTO)
         {
-            clienteUpdateDTO.ClienteId = id;
+            var dtoValidacion = new ClienteDTO
+            {
+                ClienteId = id,
+                Nombre = clienteUpdateDTO.Nombre,
+                Identidad = clienteUpdateDTO.Identidad
+            };
 
-            var validationResult = await _clienteUpdateValidator.ValidateAsync(clienteUpdateDTO);
+            var validationResult = await _clienteUpdateValidator.ValidateAsync(dtoValidacion);
             if (!validationResult.IsValid)
             {
                 var errorResponse = new ApiResponse<ClienteDTO>
