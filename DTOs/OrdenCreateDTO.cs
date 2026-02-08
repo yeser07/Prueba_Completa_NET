@@ -1,15 +1,21 @@
 ﻿using Prueba_Completa_NET.Models;
+using System.Text.Json.Serialization;
 
 namespace Prueba_Completa_NET.DTOs
 {
     public class OrdenCreateDTO
     {
+        public long OrdenId { get; set; } 
+        public long ClienteId { get; set; }
 
-        public ClienteDTO Cliente { get; set; }
-        public decimal Impuesto { get; set; }
-        public decimal Subtotal { get; set; }
-        public decimal Total { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public List<DetalleOrdenDTO> Detalles { get; set; }
+        [JsonPropertyName("detalle")]
+        public List<DetalleCreateDTO> Detalle { get; set; } = new List<DetalleCreateDTO>();
     }
+
+    public class DetalleCreateDTO
+    {
+        public long ProductoId { get; set; }
+        public int Cantidad { get; set; }
+    }
+
 }

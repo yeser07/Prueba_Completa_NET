@@ -3,9 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Prueba_Completa_NET.Data;
 using Prueba_Completa_NET.Repositories;
 using Prueba_Completa_NET.Validators;
-
-
-
+using Prueba_Completa_NET.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +26,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //Registro de repositorios
 builder.Services.AddScoped<ClienteRepository>();
 builder.Services.AddScoped<ProductoRepository>();
+builder.Services.AddScoped<OrdenRepository>();
+
+//Registro de servicios
+builder.Services.AddScoped<ClienteService>();
+builder.Services.AddScoped<ProductoService>();
 
 var app = builder.Build();
 
