@@ -12,3 +12,4 @@ namespace Prueba_Completa_NET.DTOs
         public DateTime FechaCreacion { get; set; }
         public List<DetalleOrdenDTO> Detalles { get; set; }
     }
+}

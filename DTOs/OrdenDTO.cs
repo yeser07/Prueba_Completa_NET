@@ -2,7 +2,8 @@
 {
     public class OrdenDTO
     {   
-        public int OrdenId { get; set; }
+        public long OrdenId { get; set; }
+        public long ClienteId { get; set; }
         public ClienteDTO Cliente { get; set; }
         public decimal Impuesto { get; set; }
         public decimal Subtotal { get; set; }

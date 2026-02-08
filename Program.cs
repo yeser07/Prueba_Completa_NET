@@ -1,6 +1,8 @@
-using Prueba_Completa_NET.Data;
-using Microsoft.EntityFrameworkCore;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using Prueba_Completa_NET.Data;
+using Prueba_Completa_NET.Repositories;
+using Prueba_Completa_NET.Validators;
 
 
 
@@ -15,11 +17,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Registro de servicios para validadores
-
+builder.Services.AddScoped<ClienteCreateValidator>();
+builder.Services.AddScoped<ClienteUpdateValidator>();
 
 //EF Core configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Registro de repositorios
+builder.Services.AddScoped<ClienteRepository>();
 
 var app = builder.Build();
 

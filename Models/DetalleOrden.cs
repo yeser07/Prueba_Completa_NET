@@ -2,10 +2,10 @@
 {
     public class DetalleOrden
     {
-        public int DetalleOrdenId { get; set; }
-        public int OrdenId { get; set; }
+        public long DetalleOrdenId { get; set; }
+        public long OrdenId { get; set; }
         public Orden Orden { get; set; }
-        public int ProductoId { get; set; }
+        public long ProductoId { get; set; }
 
         public Producto Producto { get; set; }
 

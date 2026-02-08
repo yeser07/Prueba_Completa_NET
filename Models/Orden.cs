@@ -4,8 +4,8 @@ namespace Prueba_Completa_NET.Models
 {
     public class Orden
     {
-        public int OrdenId { get; set; }
-        public int ClienteId { get; set; }
+        public long OrdenId { get; set; }
+        public long ClienteId { get; set; }
         public Cliente Cliente { get; set; }
         public decimal Impuesto { get; set; }
         public decimal Subtotal { get; set; }
