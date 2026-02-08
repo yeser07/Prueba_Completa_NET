@@ -54,12 +54,12 @@ El proyecto utiliza un connection string local como ejemplo: "DefaultConnection"
   - GET /api/clientes/{id}
   - POST /api/clientes
   - PUT /api/clientes/{id}
--Productos:
+- Productos:
   - GET /api/productos
   - GET /api/productos/{id}
   - POST /api/productos
   - PUT /api/productos/{id}
--Ordenes:
+- Ordenes:
   - POST /api/ordenes
         
 
