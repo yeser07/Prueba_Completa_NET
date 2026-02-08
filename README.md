@@ -79,7 +79,8 @@ El proyecto utiliza un connection string local como ejemplo: "DefaultConnection"
       "cantidad": 1
     }
   ]
-}
+} 
+```
 
 ## Decisiones Técnicas
 1. Si ocurre un error, la transaccion se revierte
