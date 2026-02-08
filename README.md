@@ -89,5 +89,5 @@ El proyecto utiliza un connection string local como ejemplo: "DefaultConnection"
 
 ## Autor
 
-Yeser Sabillón
+<strong>Yeser Sabillón</strong> <br>
 Proyecto desarrollado como parte de una prueba técnica.
