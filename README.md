@@ -10,15 +10,15 @@ No debe utilizarse en producción sin revisiones adicionales de seguridad, rendim
 ---
 ## Tecnologías utilizadas:
 
---.NET 8
---C#
---ASP.NET Core Web API
---Entity Framework Core
---SQL Server
---Swagger
---Postman
---Git
---NuGet
+--.NET 8<br>
+--C#<br>
+--ASP.NET Core Web API <br>
+--Entity Framework Core <br>
+--SQL Server <br>
+--Swagger <br>
+--Postman <br>
+--Git <br>
+--NuGet <br>
 
 ## Requisitos:
 
