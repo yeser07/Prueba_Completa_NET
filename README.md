@@ -16,7 +16,7 @@ No debe utilizarse en producción sin revisiones adicionales de seguridad, rendim
 --Entity Framework Core <br>
 --SQL Server <br>
 --Swagger <br>
---Postman <br>
+--Postman (En la carpeta ColeccionPostman se encuentra el archivo json, para importar  la coleccion y probar los enpoints desde esa aplicacion) <br>
 --Git <br>
 --NuGet <br>
 
