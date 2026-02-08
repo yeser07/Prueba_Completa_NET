@@ -63,21 +63,24 @@ El proyecto utiliza un connection string local como ejemplo: "DefaultConnection"
   - POST /api/ordenes
         
 
-	- Ejemplo post de una orden:
-	{
-       "ordenId": 0,
-       "clienteId": 1,
-       "detalle": [
-        {
-          "productoId": 1,
-          "cantidad": 2
-        },
-        {
-         "productoId": 3,
-         "cantidad": 1
-        }
-      ]
+### Ejemplo de request para crear una orden
+
+```json
+{
+  "ordenId": 0,
+  "clienteId": 1,
+  "detalle": [
+    {
+      "productoId": 1,
+      "cantidad": 2
+    },
+    {
+      "productoId": 3,
+      "cantidad": 1
     }
+  ]
+}
+
 ## Decisiones Técnicas
 1. Si ocurre un error, la transaccion se revierte
 2. Se utiliza DTOs para evitar exponer directamente las entidades.
