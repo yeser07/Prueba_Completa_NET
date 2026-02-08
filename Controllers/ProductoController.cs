@@ -11,11 +11,13 @@ namespace Prueba_Completa_NET.Controllers
     {
         private readonly ProductoRepository _productoRespository;
         private readonly ProductoCreateValidator _productoCreateValidator;
+        private readonly ProductoUpdateValidator _productoUpdateValidator;
 
-        public ProductoController(ProductoRepository productoRespository, ProductoCreateValidator productoCreateValidator)
+        public ProductoController(ProductoRepository productoRespository, ProductoCreateValidator productoCreateValidator, ProductoUpdateValidator productoUpdateValidator)
         {
             _productoRespository = productoRespository;
             _productoCreateValidator = productoCreateValidator;
+            _productoUpdateValidator = productoUpdateValidator;
         }
 
         [HttpGet]
@@ -90,10 +92,10 @@ namespace Prueba_Completa_NET.Controllers
 
         [HttpPut("{id}")]
 
-        public async Task<IActionResult> ActualizarProducto(int id, [FromBody] ProductoCreateDTO productoUpdateDTO)
+        public async Task<IActionResult> ActualizarProducto(int id, [FromBody] ProductoUpdateDTO productoUpdateDTO)
         {
             long idProducto = id;
-            var validationResult = _productoCreateValidator.Validate(productoUpdateDTO);
+            var validationResult = _productoUpdateValidator.Validate(productoUpdateDTO);
             if (!validationResult.IsValid)
             {
                 var errorResponse = new ApiResponse<ProductoDTO>

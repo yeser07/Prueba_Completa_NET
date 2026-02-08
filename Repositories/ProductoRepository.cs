@@ -66,7 +66,7 @@
             };
         }
 
-        public async Task<ProductoDTO> ActualizarProducto(long productoId, ProductoCreateDTO producto)
+        public async Task<ProductoDTO> ActualizarProducto(long productoId, ProductoUpdateDTO producto)
         {
             var productoExistente = await _context.Productos.FindAsync(productoId);
             if (productoExistente == null)

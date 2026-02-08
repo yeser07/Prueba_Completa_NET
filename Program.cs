@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ClienteCreateValidator>();
 builder.Services.AddScoped<ClienteUpdateValidator>();
 builder.Services.AddScoped<ProductoCreateValidator>();
+builder.Services.AddScoped<ProductoUpdateValidator>();
 
 //EF Core configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
