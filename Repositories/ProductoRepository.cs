@@ -14,37 +14,24 @@
             _context = context;
         }
 
-        public async Task<List<ProductoDTO>> ListarProductos()
+        public async Task<List<Producto>> ListarProductos()
         {
            var productos = await _context.Productos.ToListAsync();
-            return productos.Select(p => new ProductoDTO
-            {
-                ProductoId = p.ProductoId,
-                Nombre = p.Nombre,
-                Descripcion = p.Descripcion,
-                Precio = p.Precio,
-                Existencia = p.Existencia
-            }).ToList();
+            return productos;
         }
 
-        public async Task<ProductoDTO> ObtenerProductoPorId(long productoId)
+        public async Task<Producto> ObtenerProductoPorId(long productoId)
         {
             var producto = await _context.Productos.FindAsync(productoId);
             if (producto == null)
             {
                 return null;
             }
-            return new ProductoDTO
-            {
-                ProductoId = producto.ProductoId,
-                Nombre = producto.Nombre,
-                Descripcion = producto.Descripcion,
-                Precio = producto.Precio,
-                Existencia = producto.Existencia
-            };
+            
+            return producto;
         }
 
-        public async Task<ProductoDTO> CrearProducto(ProductoCreateDTO producto)
+        public async Task<Producto> CrearProducto(ProductoCreateDTO producto)
         {
             var nuevoProducto = new Producto
             {
@@ -56,17 +43,10 @@
             };
             _context.Productos.Add(nuevoProducto);
             await _context.SaveChangesAsync();
-            return new ProductoDTO
-            {
-                ProductoId = nuevoProducto.ProductoId,
-                Nombre = nuevoProducto.Nombre,
-                Descripcion = nuevoProducto.Descripcion,
-                Precio = nuevoProducto.Precio,
-                Existencia = nuevoProducto.Existencia
-            };
+            return nuevoProducto;
         }
 
-        public async Task<ProductoDTO> ActualizarProducto(long productoId, ProductoUpdateDTO producto)
+        public async Task<Producto> ActualizarProducto(long productoId, ProductoUpdateDTO producto)
         {
             var productoExistente = await _context.Productos.FindAsync(productoId);
             if (productoExistente == null)
@@ -81,15 +61,19 @@
 
             _context.Productos.Update(productoExistente);
             await _context.SaveChangesAsync();
-            return new ProductoDTO
-            {
-                ProductoId = productoExistente.ProductoId,
-                Nombre = productoExistente.Nombre,
-                Descripcion = productoExistente.Descripcion,
-                Precio = productoExistente.Precio,
-                Existencia = productoExistente.Existencia
-            };
+            return productoExistente;
         }
+
+
+        public async Task ActualizarExistenciaAsync(Producto producto, int cantidadVendida)
+        {
+            if (producto.Existencia < cantidadVendida)
+                throw new Exception($"Producto {producto.ProductoId} no tiene suficiente stock.");
+
+            producto.Existencia -= cantidadVendida;
+            _context.Productos.Update(producto);
+        }
+
 
     }
 }

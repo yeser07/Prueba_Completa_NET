@@ -10,14 +10,12 @@ namespace Prueba_Completa_NET.Controllers
     public class ClienteController : ControllerBase
     {
 
-        private readonly IClienteRepository _clienteRepository;
         private readonly IClienteService _clienteService;
         private readonly ClienteCreateValidator _clienteCreateValidator;
         private readonly ClienteUpdateValidator _clienteUpdateValidator;
 
         public ClienteController(IClienteRepository clienteRepository, IClienteService clienteService,ClienteCreateValidator clienteCreateValidator, ClienteUpdateValidator clienteUpdateValidator)
         {
-            _clienteRepository = clienteRepository;
             _clienteCreateValidator = clienteCreateValidator;
             _clienteUpdateValidator = clienteUpdateValidator;
             _clienteService = clienteService;

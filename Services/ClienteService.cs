@@ -2,30 +2,20 @@
 namespace Prueba_Completa_NET.Services
 {
     using Prueba_Completa_NET.Data;
-    using Prueba_Completa_NET.Models;
     using Prueba_Completa_NET.Interfaces;
     using AutoMapper;
     using Prueba_Completa_NET.DTOs;
 
     public class ClienteService : IClienteService
     {
-        private readonly AppDbContext _context;
         private readonly IClienteRepository _clienteRepository;
         private readonly IMapper _mapper;
 
-        public ClienteService(AppDbContext context, IClienteRepository clienteRepository, IMapper mapper)
+        public ClienteService(IClienteRepository clienteRepository, IMapper mapper)
         {
-            _context = context;
             _clienteRepository = clienteRepository;
             _mapper = mapper;
         }
-
-        public async Task<Cliente?> ObtenerClientePorIdAsync(long clienteId)
-        {
-            return await _context.Clientes.FindAsync(clienteId);
-        }
-
-
 
         public async Task<List<ClienteDTO>> ListarClientes()
         {

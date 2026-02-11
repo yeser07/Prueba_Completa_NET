@@ -9,13 +9,13 @@ namespace Prueba_Completa_NET.Controllers
     [Route("api/[controller]")]
     public class ProductoController : ControllerBase
     {
-        private readonly IProductoRepository _productoRespository;
+        private readonly IProductoService _productoService;
         private readonly ProductoCreateValidator _productoCreateValidator;
         private readonly ProductoUpdateValidator _productoUpdateValidator;
 
-        public ProductoController(IProductoRepository productoRespository, ProductoCreateValidator productoCreateValidator, ProductoUpdateValidator productoUpdateValidator)
+        public ProductoController(IProductoService productoService, ProductoCreateValidator productoCreateValidator, ProductoUpdateValidator productoUpdateValidator)
         {
-            _productoRespository = productoRespository;
+            _productoService = productoService;
             _productoCreateValidator = productoCreateValidator;
             _productoUpdateValidator = productoUpdateValidator;
         }
@@ -24,7 +24,7 @@ namespace Prueba_Completa_NET.Controllers
 
         public async Task<IActionResult> GetProductos()
         {
-            var productos = await _productoRespository.ListarProductos();
+            var productos = await _productoService.ListarProductos();
             var response = new DTOs.ApiResponse<List<DTOs.ProductoDTO>>
             {
                 Success = true,
@@ -41,7 +41,7 @@ namespace Prueba_Completa_NET.Controllers
         public async Task<IActionResult> GetProductoPorId(int id)
         {
             long idProducto = id;
-            var producto = await _productoRespository.ObtenerProductoPorId(idProducto);
+            var producto = await _productoService.ObtenerProductoPorId(idProducto);
             if (producto == null)
             {
                 var notFoundResponse = new ApiResponse<ProductoDTO>
@@ -79,7 +79,7 @@ namespace Prueba_Completa_NET.Controllers
                 };
                 return BadRequest(errorResponse);
             }
-            var nuevoProducto = await _productoRespository.CrearProducto(productoCreateDTO);
+            var nuevoProducto = await _productoService.CrearProducto(productoCreateDTO);
             var response = new ApiResponse<ProductoDTO>
             {
                 Success = true,
@@ -108,7 +108,7 @@ namespace Prueba_Completa_NET.Controllers
                 return BadRequest(errorResponse);
             }
 
-            var productoActualizado = await _productoRespository.ActualizarProducto(idProducto, productoUpdateDTO);
+            var productoActualizado = await _productoService.ActualizarProducto(idProducto, productoUpdateDTO);
             if (productoActualizado == null)
             {
                 var notFoundResponse = new ApiResponse<ProductoDTO>

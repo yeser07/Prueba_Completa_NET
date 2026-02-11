@@ -13,10 +13,10 @@ namespace Prueba_Completa_NET.Controllers
     public class OrdenController : ControllerBase
     {
         //private readonly OrdenRepository _ordenRepository;
-        private readonly ClienteService _clienteService;
+        private readonly IClienteService _clienteService;
         private readonly IOrdenRepository _ordenRepository;
 
-        public OrdenController(ClienteService clienteService, IOrdenRepository ordenRepository)
+        public OrdenController( IOrdenRepository ordenRepository,IClienteService clienteService)
         {
             _clienteService = clienteService;
             _ordenRepository = ordenRepository;
@@ -28,7 +28,7 @@ namespace Prueba_Completa_NET.Controllers
         public async Task<IActionResult> CrearOrden([FromBody] OrdenCreateDTO ordenCreateDTO)
         {
             // Validar cliente
-            var cliente = await _clienteService.ObtenerClientePorIdAsync(ordenCreateDTO.ClienteId);
+            var cliente = await _clienteService.ObtenerClientePorId(ordenCreateDTO.ClienteId);
             if (cliente == null)
             {
                 var notFoundResponse = new ApiResponse<OrdenDTO>
