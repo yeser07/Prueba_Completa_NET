@@ -1,9 +1,12 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Prueba_Completa_NET.Data;
-using Prueba_Completa_NET.Repositories;
-using Prueba_Completa_NET.Validators;
-using Prueba_Completa_NET.Services;
 using Prueba_Completa_NET.Interfaces;
+using Prueba_Completa_NET.Mappings;
+using Prueba_Completa_NET.Repositories;
+using Prueba_Completa_NET.Services;
+using Prueba_Completa_NET.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +27,16 @@ builder.Services.AddScoped<ProductoUpdateValidator>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//AutoMapper configuration
+builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile));
+
 //Registro de repositorios
 builder.Services.AddScoped<IClienteRepository,ClienteRepository>();
 builder.Services.AddScoped<IProductoRepository,ProductoRepository>();
 builder.Services.AddScoped<IOrdenRepository,OrdenRepository>();
 
 //Registro de servicios
-builder.Services.AddScoped<ClienteService>();
+builder.Services.AddScoped<IClienteService,ClienteService>();
 builder.Services.AddScoped<ProductoService>();
 
 var app = builder.Build();

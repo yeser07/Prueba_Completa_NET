@@ -11,20 +11,23 @@ namespace Prueba_Completa_NET.Controllers
     {
 
         private readonly IClienteRepository _clienteRepository;
+        private readonly IClienteService _clienteService;
         private readonly ClienteCreateValidator _clienteCreateValidator;
         private readonly ClienteUpdateValidator _clienteUpdateValidator;
 
-        public ClienteController(IClienteRepository clienteRepository, ClienteCreateValidator clienteCreateValidator, ClienteUpdateValidator clienteUpdateValidator)
+        public ClienteController(IClienteRepository clienteRepository, IClienteService clienteService,ClienteCreateValidator clienteCreateValidator, ClienteUpdateValidator clienteUpdateValidator)
         {
             _clienteRepository = clienteRepository;
             _clienteCreateValidator = clienteCreateValidator;
             _clienteUpdateValidator = clienteUpdateValidator;
+            _clienteService = clienteService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetClientes()
         {
-            var clientes = await _clienteRepository.ListarClientes();
+            var clientes = await _clienteService.ListarClientes();
+
             var response = new DTOs.ApiResponse<List<ClienteDTO>>
             {
                 Success = true,
@@ -42,7 +45,7 @@ namespace Prueba_Completa_NET.Controllers
         {
             long idCliente = id;
 
-            var cliente = await _clienteRepository.ObtenerClientePorId(idCliente);
+            var cliente = await _clienteService.ObtenerClientePorId(idCliente);
             if (cliente == null)
             {
                 var notFoundResponse = new ApiResponse<ClienteDTO>
@@ -82,7 +85,7 @@ namespace Prueba_Completa_NET.Controllers
                 return BadRequest(errorResponse);
             }
 
-            var nuevoCliente = await _clienteRepository.CrearCliente(clienteCreateDTO);
+            var nuevoCliente = await _clienteService.CrearCliente(clienteCreateDTO);
 
             var response = new ApiResponse<ClienteDTO>
             {
@@ -119,7 +122,7 @@ namespace Prueba_Completa_NET.Controllers
             }
 
             // Actualizar
-            var clienteActualizado = await _clienteRepository.ActualizarCliente(id, clienteUpdateDTO);
+            var clienteActualizado = await _clienteService.ActualizarCliente(id, clienteUpdateDTO);
 
             if (clienteActualizado == null)
             {

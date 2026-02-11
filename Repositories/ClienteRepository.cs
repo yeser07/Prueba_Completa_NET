@@ -18,58 +18,38 @@
 
 
 
-        public async Task<List<ClienteDTO>> ListarClientes()
+        public async Task<List<Cliente>> ListarClientes()
         {
-            {
-                var clientes = await _context.Clientes.ToListAsync();
-
-                return clientes.Select(c => new ClienteDTO
-                {
-                    ClienteId = c.ClienteId,
-                    Nombre = c.Nombre,
-                    Identidad = c.Identidad
-                }).ToList();
-
-
-            }
+                return await _context.Clientes.ToListAsync();
         }
 
-        public async Task<ClienteDTO> ObtenerClientePorId(long clienteId)
+        public async Task<Cliente> ObtenerClientePorId(long clienteId)
         {
             var cliente = await _context.Clientes.FindAsync(clienteId);
+            
             if (cliente == null)
             {
                 return null;
-            }
-            return new ClienteDTO
-            {
-                ClienteId = cliente.ClienteId,
-                Nombre = cliente.Nombre,
-                Identidad = cliente.Identidad
-            };
+            } 
+            return cliente;
 
         }
 
-        public async Task<ClienteDTO> CrearCliente(ClienteCreateDTO cliente)
+        public async Task<Cliente> CrearCliente(ClienteCreateDTO cliente)
         {
            var nuevoCliente = new Cliente
             {
                 Nombre = cliente.Nombre,
-                Identidad = cliente.Identidad
-            };
+                Identidad = cliente.Identidad,
+                CreatedAt = DateTime.Now
+           };
             _context.Clientes.Add(nuevoCliente);
             await _context.SaveChangesAsync();
-            cliente.ClienteId = nuevoCliente.ClienteId;
-            
-            return new ClienteDTO
-            {
-                ClienteId = nuevoCliente.ClienteId,
-                Nombre = nuevoCliente.Nombre,
-                Identidad = nuevoCliente.Identidad
-            };
+
+            return nuevoCliente;
         }
 
-        public async Task<ClienteDTO> ActualizarCliente(long clienteId, ClienteUpdateDTO clienteUpdateDTO)
+        public async Task<Cliente> ActualizarCliente(long clienteId, ClienteUpdateDTO clienteUpdateDTO)
         {
             var clienteExistente = await _context.Clientes.FindAsync(clienteId);
 
@@ -82,14 +62,8 @@
             _context.Clientes.Update(clienteExistente);
             await _context.SaveChangesAsync();
 
-            return new ClienteDTO
-            {
-                ClienteId = clienteExistente.ClienteId,
-                Nombre = clienteExistente.Nombre,
-                Identidad = clienteExistente.Identidad
-            };
+            return clienteExistente;
         }
-
 
     }
 }
