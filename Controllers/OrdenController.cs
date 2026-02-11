@@ -14,12 +14,12 @@ namespace Prueba_Completa_NET.Controllers
     {
         //private readonly OrdenRepository _ordenRepository;
         private readonly IClienteService _clienteService;
-        private readonly IOrdenRepository _ordenRepository;
+        private readonly IOrdenService _ordenService;
 
-        public OrdenController( IOrdenRepository ordenRepository,IClienteService clienteService)
+        public OrdenController( IOrdenService ordenService,IClienteService clienteService)
         {
             _clienteService = clienteService;
-            _ordenRepository = ordenRepository;
+            _ordenService = ordenService;
         }
 
 
@@ -44,7 +44,7 @@ namespace Prueba_Completa_NET.Controllers
             try
             {
                 // Llamamos al repositorio para crear la orden
-                var ordenCreada = await _ordenRepository.CrearOrden(ordenCreateDTO);
+                var ordenCreada = await _ordenService.CrearOrden(ordenCreateDTO);
 
                 var response = new ApiResponse<OrdenDTO>
                 {

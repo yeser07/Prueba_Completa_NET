@@ -13,8 +13,11 @@
             CreateMap<Producto, ProductoDTO>();
             CreateMap<ProductoCreateDTO, Producto>();
             CreateMap<ProductoUpdateDTO, Producto>();
+            CreateMap<DetalleOrden, DetalleOrdenDTO>();
+            CreateMap<DetalleCreateDTO, DetalleOrden>();
             CreateMap<Orden, OrdenDTO>();
             CreateMap<OrdenCreateDTO, Orden>();
+
         }
 
     }

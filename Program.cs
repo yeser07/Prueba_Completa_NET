@@ -38,6 +38,7 @@ builder.Services.AddScoped<IOrdenRepository,OrdenRepository>();
 //Registro de servicios
 builder.Services.AddScoped<IClienteService,ClienteService>();
 builder.Services.AddScoped<IProductoService,ProductoService>();
+builder.Services.AddScoped<IOrdenService,OrdenService>();
 
 var app = builder.Build();
 
