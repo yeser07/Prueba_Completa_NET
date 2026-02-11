@@ -4,7 +4,7 @@
     using Prueba_Completa_NET.Models;
     using Prueba_Completa_NET.DTOs;
     using Microsoft.EntityFrameworkCore;
-    using Prueba_Completa_NET.Interfaces;
+    using Prueba_Completa_NET.Interfaces.IRepository;
 
     public class ClienteRepository : IClienteRepository
     {

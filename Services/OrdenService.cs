@@ -1,8 +1,10 @@
 ﻿namespace Prueba_Completa_NET.Services
 {
-    using Prueba_Completa_NET.Interfaces;
     using Prueba_Completa_NET.DTOs;
     using AutoMapper;
+    using Prueba_Completa_NET.Interfaces.IRepository;
+    using Prueba_Completa_NET.Interfaces.IServices;
+
     public class OrdenService : IOrdenService
     {
         private readonly IOrdenRepository _ordenRepository;

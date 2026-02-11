@@ -1,8 +1,8 @@
 ﻿using Prueba_Completa_NET.Data;
 using Prueba_Completa_NET.Models;
 using Prueba_Completa_NET.DTOs;
-using Prueba_Completa_NET.Interfaces;
 using AutoMapper;
+using Prueba_Completa_NET.Interfaces.IRepository;
 
 namespace Prueba_Completa_NET.Repositories
 {

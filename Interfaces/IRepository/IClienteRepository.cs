@@ -1,4 +1,4 @@
-﻿namespace Prueba_Completa_NET.Interfaces
+﻿namespace Prueba_Completa_NET.Interfaces.IRepository
 {
     using Prueba_Completa_NET.Models;
     using Prueba_Completa_NET.DTOs;

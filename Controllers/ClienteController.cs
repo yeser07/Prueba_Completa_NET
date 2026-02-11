@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prueba_Completa_NET.DTOs;
-using Prueba_Completa_NET.Interfaces;
+using Prueba_Completa_NET.Interfaces.IRepository;
+using Prueba_Completa_NET.Interfaces.IServices;
 using Prueba_Completa_NET.Validators;
 
 namespace Prueba_Completa_NET.Controllers

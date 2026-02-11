@@ -1,10 +1,10 @@
 ﻿
 namespace Prueba_Completa_NET.Services
 {
-    using Prueba_Completa_NET.Data;
-    using Prueba_Completa_NET.Interfaces;
     using AutoMapper;
     using Prueba_Completa_NET.DTOs;
+    using Prueba_Completa_NET.Interfaces.IRepository;
+    using Prueba_Completa_NET.Interfaces.IServices;
 
     public class ClienteService : IClienteService
     {

@@ -1,8 +1,7 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Prueba_Completa_NET.Data;
-using Prueba_Completa_NET.Interfaces;
+using Prueba_Completa_NET.Interfaces.IRepository;
+using Prueba_Completa_NET.Interfaces.IServices;
 using Prueba_Completa_NET.Mappings;
 using Prueba_Completa_NET.Repositories;
 using Prueba_Completa_NET.Services;
