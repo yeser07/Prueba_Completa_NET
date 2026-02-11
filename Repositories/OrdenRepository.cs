@@ -2,10 +2,11 @@
 using Prueba_Completa_NET.Models;
 using Prueba_Completa_NET.DTOs;
 using Prueba_Completa_NET.Services;
+using Prueba_Completa_NET.Interfaces;
 
 namespace Prueba_Completa_NET.Repositories
 {
-    public class OrdenRepository
+    public class OrdenRepository: IOrdenRepository
     {
         private readonly AppDbContext _context;
         private readonly ProductoService _productoService;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prueba_Completa_NET.DTOs;
-using Prueba_Completa_NET.Repositories;
 using Prueba_Completa_NET.Services;
+using Prueba_Completa_NET.Interfaces;
 
 
 namespace Prueba_Completa_NET.Controllers
@@ -14,9 +14,9 @@ namespace Prueba_Completa_NET.Controllers
     {
         //private readonly OrdenRepository _ordenRepository;
         private readonly ClienteService _clienteService;
-        private readonly OrdenRepository _ordenRepository;
+        private readonly IOrdenRepository _ordenRepository;
 
-        public OrdenController(ClienteService clienteService, OrdenRepository ordenRepository)
+        public OrdenController(ClienteService clienteService, IOrdenRepository ordenRepository)
         {
             _clienteService = clienteService;
             _ordenRepository = ordenRepository;

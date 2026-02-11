@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prueba_Completa_NET.Validators;
-using Prueba_Completa_NET.Repositories;
 using Prueba_Completa_NET.DTOs;
+using Prueba_Completa_NET.Interfaces;
 
 namespace Prueba_Completa_NET.Controllers
 {
@@ -9,11 +9,11 @@ namespace Prueba_Completa_NET.Controllers
     [Route("api/[controller]")]
     public class ProductoController : ControllerBase
     {
-        private readonly ProductoRepository _productoRespository;
+        private readonly IProductoRepository _productoRespository;
         private readonly ProductoCreateValidator _productoCreateValidator;
         private readonly ProductoUpdateValidator _productoUpdateValidator;
 
-        public ProductoController(ProductoRepository productoRespository, ProductoCreateValidator productoCreateValidator, ProductoUpdateValidator productoUpdateValidator)
+        public ProductoController(IProductoRepository productoRespository, ProductoCreateValidator productoCreateValidator, ProductoUpdateValidator productoUpdateValidator)
         {
             _productoRespository = productoRespository;
             _productoCreateValidator = productoCreateValidator;

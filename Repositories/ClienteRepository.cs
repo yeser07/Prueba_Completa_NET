@@ -4,8 +4,9 @@
     using Prueba_Completa_NET.Models;
     using Prueba_Completa_NET.DTOs;
     using Microsoft.EntityFrameworkCore;
+    using Prueba_Completa_NET.Interfaces;
 
-    public class ClienteRepository
+    public class ClienteRepository : IClienteRepository
     {
         private readonly AppDbContext _context;
 

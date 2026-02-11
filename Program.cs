@@ -1,9 +1,9 @@
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Prueba_Completa_NET.Data;
 using Prueba_Completa_NET.Repositories;
 using Prueba_Completa_NET.Validators;
 using Prueba_Completa_NET.Services;
+using Prueba_Completa_NET.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +25,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //Registro de repositorios
-builder.Services.AddScoped<ClienteRepository>();
-builder.Services.AddScoped<ProductoRepository>();
-builder.Services.AddScoped<OrdenRepository>();
+builder.Services.AddScoped<IClienteRepository,ClienteRepository>();
+builder.Services.AddScoped<IProductoRepository,ProductoRepository>();
+builder.Services.AddScoped<IOrdenRepository,OrdenRepository>();
 
 //Registro de servicios
 builder.Services.AddScoped<ClienteService>();

@@ -1,8 +1,6 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Prueba_Completa_NET.DTOs;
-using Prueba_Completa_NET.Repositories;
+using Prueba_Completa_NET.Interfaces;
 using Prueba_Completa_NET.Validators;
 
 namespace Prueba_Completa_NET.Controllers
@@ -12,11 +10,11 @@ namespace Prueba_Completa_NET.Controllers
     public class ClienteController : ControllerBase
     {
 
-        private readonly ClienteRepository _clienteRepository;
+        private readonly IClienteRepository _clienteRepository;
         private readonly ClienteCreateValidator _clienteCreateValidator;
         private readonly ClienteUpdateValidator _clienteUpdateValidator;
 
-        public ClienteController(ClienteRepository clienteRepository, ClienteCreateValidator clienteCreateValidator, ClienteUpdateValidator clienteUpdateValidator)
+        public ClienteController(IClienteRepository clienteRepository, ClienteCreateValidator clienteCreateValidator, ClienteUpdateValidator clienteUpdateValidator)
         {
             _clienteRepository = clienteRepository;
             _clienteCreateValidator = clienteCreateValidator;

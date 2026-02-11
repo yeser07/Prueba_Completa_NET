@@ -4,8 +4,8 @@
     using Prueba_Completa_NET.Data;
     using Prueba_Completa_NET.DTOs;
     using Prueba_Completa_NET.Models;
-
-    public class ProductoRepository
+    using Prueba_Completa_NET.Interfaces;
+    public class ProductoRepository : IProductoRepository
     {
         private readonly AppDbContext _context;
 
