@@ -10,6 +10,7 @@
             CreateMap<Cliente, ClienteDTO>();
             CreateMap<ClienteCreateDTO, Cliente>().ForMember(dest => dest.ClienteId, opt => opt.Ignore());
             CreateMap<ClienteUpdateDTO, Cliente>();
+            CreateMap<ClienteUpdateDTO, ClienteDTO>();
             CreateMap<Producto, ProductoDTO>();
             CreateMap<ProductoCreateDTO, Producto>();
             CreateMap<ProductoUpdateDTO, Producto>();

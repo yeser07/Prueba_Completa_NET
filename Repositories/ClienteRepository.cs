@@ -6,15 +6,18 @@
     using Prueba_Completa_NET.Exceptions;
     using Prueba_Completa_NET.Interfaces.IRepository;
     using Prueba_Completa_NET.Models;
+    using AutoMapper;
 
     public class ClienteRepository : IClienteRepository
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
 
-        public ClienteRepository(AppDbContext context)
+        public ClienteRepository(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -26,23 +29,15 @@
 
         public async Task<Cliente> ObtenerClientePorId(long clienteId)
         {
-            var cliente = await _context.Clientes.FindAsync(clienteId);
-            
-            if (cliente == null)
-                throw new NotFoundException("No existe un cliente con el ID especificado");
-            
-            return cliente;
-
+            return await _context.Clientes.FindAsync(clienteId);
+       
         }
 
         public async Task<Cliente> CrearCliente(ClienteCreateDTO cliente)
         {
-           var nuevoCliente = new Cliente
-            {
-                Nombre = cliente.Nombre,
-                Identidad = cliente.Identidad,
-                CreatedAt = DateTime.Now
-           };
+            var nuevoCliente = _mapper.Map<Cliente>(cliente);
+            nuevoCliente.CreatedAt = DateTime.Now;
+            
             _context.Clientes.Add(nuevoCliente);
             await _context.SaveChangesAsync();
 

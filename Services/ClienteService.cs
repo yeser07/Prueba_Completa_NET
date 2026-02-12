@@ -24,22 +24,11 @@ namespace Prueba_Completa_NET.Services
 
         }
 
-        public async Task<ApiResponse<List<ClienteDTO>>> ListarClientes()
+        public async Task<List<ClienteDTO>> ListarClientes()
         {
             var clientes = await _clienteRepository.ListarClientes();
 
-            var clientesMapeados = _mapper.Map<List<ClienteDTO>>(clientes);
-
-
-            var response = new ApiResponse<List<ClienteDTO>>
-            {
-                Success = true,
-                Message = "",
-                Errors = new List<string>(),
-                Data = clientesMapeados
-            };
-
-            return response;
+            return _mapper.Map<List<ClienteDTO>>(clientes);
 
         }
 
@@ -49,7 +38,7 @@ namespace Prueba_Completa_NET.Services
 
             if (cliente == null)
             {
-                throw new KeyNotFoundException("No existe un cliente con el ID especificado");
+                throw new NotFoundException("No existe un cliente con el ID especificado");
             }
             return _mapper.Map<ClienteDTO>(cliente);
         }
@@ -72,12 +61,9 @@ namespace Prueba_Completa_NET.Services
 
         public async Task<ClienteDTO> ActualizarCliente(long clienteId, ClienteUpdateDTO cliente)
         {
-            var dtoValidacion = new ClienteDTO
-            {
-                ClienteId = clienteId,
-                Nombre = cliente.Nombre,
-                Identidad = cliente.Identidad
-            };
+
+            var dtoValidacion = _mapper.Map<ClienteDTO>(cliente);
+            dtoValidacion.ClienteId = clienteId;
 
             var validationResult = await _clienteUpdateValidator.ValidateAsync(dtoValidacion);
 
