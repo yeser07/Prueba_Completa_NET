@@ -5,6 +5,7 @@
     using Prueba_Completa_NET.DTOs;
     using System.Net;
     using Prueba_Completa_NET.Exceptions;
+
     public class ExceptionMiddleware
     {
         private readonly ILogger<ExceptionMiddleware> _logger;
@@ -22,10 +23,25 @@
             {
                 await _next(httpContext);
             }
+            catch (NotFoundException ex)
+            {
+                _logger.LogWarning(ex, "Recurso no encontrado: {Message}", ex.Message);
+                httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                var response = new ApiResponse<string>
+                {
+                    Success = false,
+                    Message = "Recurso no encontrado",
+                    Errors = new List<string> { ex.Message },
+                    Data = null
+                };
+                await httpContext.Response.WriteAsJsonAsync(response);
+            }
             catch (ValidationException ex)
             {
                 _logger.LogWarning(ex, "Error de validación: {Message}", ex.Message);
                 httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
                 var response = new ApiResponse<string>
                 {
@@ -38,7 +54,7 @@
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió una excepción no controlada: {Message}",ex.Message );
+                _logger.LogError(ex, "Ocurrió una excepción no controlada: {Message}", ex.Message);
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -56,7 +72,5 @@
             };
             return context.Response.WriteAsJsonAsync(response);
         }
-
-
     }
 }
