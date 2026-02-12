@@ -28,9 +28,8 @@
             var cliente = await _context.Clientes.FindAsync(clienteId);
             
             if (cliente == null)
-            {
-                return null;
-            } 
+                throw new KeyNotFoundException("No existe un cliente con el ID especificado");
+            
             return cliente;
 
         }
@@ -54,7 +53,7 @@
             var clienteExistente = await _context.Clientes.FindAsync(clienteId);
 
             if (clienteExistente == null)
-                return null;
+                throw new KeyNotFoundException("No existe un cliente con el ID especificado");
 
             clienteExistente.Nombre = clienteUpdateDTO.Nombre;
             clienteExistente.Identidad = clienteUpdateDTO.Identidad;

@@ -8,7 +8,7 @@
         public MappingProfile()
         {
             CreateMap<Cliente, ClienteDTO>();
-            CreateMap<ClienteCreateDTO, Cliente>();
+            CreateMap<ClienteCreateDTO, Cliente>().ForMember(dest => dest.ClienteId, opt => opt.Ignore());
             CreateMap<ClienteUpdateDTO, Cliente>();
             CreateMap<Producto, ProductoDTO>();
             CreateMap<ProductoCreateDTO, Producto>();

@@ -3,6 +3,7 @@ using Prueba_Completa_NET.Data;
 using Prueba_Completa_NET.Interfaces.IRepository;
 using Prueba_Completa_NET.Interfaces.IServices;
 using Prueba_Completa_NET.Mappings;
+using Prueba_Completa_NET.Middlewares;
 using Prueba_Completa_NET.Repositories;
 using Prueba_Completa_NET.Services;
 using Prueba_Completa_NET.Validators;
@@ -15,6 +16,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 
 //Registro de servicios para validadores
 builder.Services.AddScoped<ClienteCreateValidator>();
@@ -40,6 +43,9 @@ builder.Services.AddScoped<IProductoService,ProductoService>();
 builder.Services.AddScoped<IOrdenService,OrdenService>();
 
 var app = builder.Build();
+
+//Registro de middleware para manejo global de excepciones
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
