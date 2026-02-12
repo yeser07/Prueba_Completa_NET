@@ -21,7 +21,7 @@ namespace Prueba_Completa_NET.Controllers
         [HttpGet]
         public async Task<IActionResult> GetClientes()
         {
-            return Ok(await _clienteService.ListarClientes());
+            return SuccessResponse(await _clienteService.ListarClientes());
         }
 
         [HttpGet("{id}")]
