@@ -62,10 +62,9 @@ namespace Prueba_Completa_NET.Services
         public async Task<ClienteDTO> ActualizarCliente(long clienteId, ClienteUpdateDTO cliente)
         {
 
-            var dtoValidacion = _mapper.Map<ClienteDTO>(cliente);
-            dtoValidacion.ClienteId = clienteId;
+            cliente.ClienteId = clienteId;
 
-            var validationResult = await _clienteUpdateValidator.ValidateAsync(dtoValidacion);
+            var validationResult = await _clienteUpdateValidator.ValidateAsync(cliente);
 
             if (!validationResult.IsValid)
             {
@@ -75,6 +74,11 @@ namespace Prueba_Completa_NET.Services
             }
 
             var clienteActualizado = await _clienteRepository.ActualizarCliente(clienteId, cliente);
+
+             if (clienteActualizado == null)
+
+                throw new NotFoundException("No existe un cliente con el ID especificado");
+
             return _mapper.Map<ClienteDTO>(clienteActualizado);
         }
     }

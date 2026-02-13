@@ -48,9 +48,6 @@
         {
             var clienteExistente = await _context.Clientes.FindAsync(clienteId);
 
-            if (clienteExistente == null)
-                throw new NotFoundException("No existe un cliente con el ID especificado");
-
             var clienteActualizado = _mapper.Map(clienteUpdateDTO, clienteExistente);
 
             _context.Clientes.Update(clienteActualizado);
