@@ -51,10 +51,9 @@
             if (clienteExistente == null)
                 throw new NotFoundException("No existe un cliente con el ID especificado");
 
-            clienteExistente.Nombre = clienteUpdateDTO.Nombre;
-            clienteExistente.Identidad = clienteUpdateDTO.Identidad;
+            var clienteActualizado = _mapper.Map(clienteUpdateDTO, clienteExistente);
 
-            _context.Clientes.Update(clienteExistente);
+            _context.Clientes.Update(clienteActualizado);
             await _context.SaveChangesAsync();
 
             return clienteExistente;

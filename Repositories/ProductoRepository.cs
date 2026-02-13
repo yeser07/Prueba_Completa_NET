@@ -1,47 +1,40 @@
 ﻿namespace Prueba_Completa_NET.Repositories
 {
+    using AutoMapper;
+
     using Microsoft.EntityFrameworkCore;
     using Prueba_Completa_NET.Data;
     using Prueba_Completa_NET.DTOs;
-    using Prueba_Completa_NET.Models;
+using Prueba_Completa_NET.Exceptions;
     using Prueba_Completa_NET.Interfaces.IRepository;
+    using Prueba_Completa_NET.Models;
 
     public class ProductoRepository : IProductoRepository
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductoRepository(AppDbContext context)
+        public ProductoRepository(AppDbContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<List<Producto>> ListarProductos()
         {
-           var productos = await _context.Productos.ToListAsync();
-            return productos;
+          return await _context.Productos.ToListAsync();
         }
 
         public async Task<Producto> ObtenerProductoPorId(long productoId)
         {
-            var producto = await _context.Productos.FindAsync(productoId);
-            if (producto == null)
-            {
-                return null;
-            }
-            
-            return producto;
+            return await _context.Productos.FindAsync(productoId);
         }
 
         public async Task<Producto> CrearProducto(ProductoCreateDTO producto)
         {
-            var nuevoProducto = new Producto
-            {
-                Nombre = producto.Nombre,
-                Descripcion = producto.Descripcion,
-                Precio = producto.Precio,
-                Existencia = producto.Existencia,
+            var nuevoProducto = _mapper.Map<Producto>(producto);
+            nuevoProducto.CreatedAt = DateTime.Now;
 
-            };
             _context.Productos.Add(nuevoProducto);
             await _context.SaveChangesAsync();
             return nuevoProducto;
@@ -52,15 +45,12 @@
             var productoExistente = await _context.Productos.FindAsync(productoId);
             if (productoExistente == null)
             {
-                return null;
+                throw new NotFoundException ($"Producto con ID {productoId} no encontrado.");
             }
 
-            productoExistente.Nombre = producto.Nombre;
-            productoExistente.Precio = producto.Precio;
-            productoExistente.Descripcion = producto.Descripcion;
-            productoExistente.Existencia = producto.Existencia;
+            var productoActualizado = _mapper.Map(producto, productoExistente);
 
-            _context.Productos.Update(productoExistente);
+            _context.Productos.Update(productoActualizado);
             await _context.SaveChangesAsync();
             return productoExistente;
         }
